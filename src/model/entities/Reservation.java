@@ -14,6 +14,7 @@ public class Reservation {
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public Reservation(Integer roomNumber, Date checkIn, Date checkOut) throws DomainException {
+        //adicionar checagem de erro no construtor
         if (!checkOut.after(checkIn)) {
             throw new DomainException("CheckOut tem que ser dps do checkIn");
         }
@@ -47,6 +48,8 @@ public class Reservation {
     public void updateDates(Date checkIn, Date checkOut) throws DomainException {
 
         Date now = new Date();
+
+        //adicionar checagem de erros ao atualizar as datas
         if (checkIn.before(now) || checkOut.before(now)) {
             throw new DomainException("Datas de atualização do devem ser futuras a hoje.");
         }
